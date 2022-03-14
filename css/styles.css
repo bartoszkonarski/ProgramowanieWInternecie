@@ -27,11 +27,12 @@ body {
 #box {
 	background-color: #3d405b;
 	color: #f2cc8f;
-	padding: 20px 40px 20px 40px;
+	padding: 60px 20px 60px 20px;
 	font-family: Courier, sans-serif;
 	text-align: center;
 	font-size: 16px;
 	width: 60vw;
+	height: 50vh;
 	position: absolute;
 }
 
@@ -63,7 +64,16 @@ img {
 #imgdiv {
 	height: 50vh;
 	float: left;
+	margin-left: 10vh;
 }
 .image {
 	height: 100%;
+	position: sticky;
+}
+
+#textdiv {
+	max-width: 40vw;
+	float: right;
+	height: 60vh;
+	margin-right: 10vw;
 }
