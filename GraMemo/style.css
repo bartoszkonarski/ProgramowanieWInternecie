@@ -1,0 +1,55 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	display: flex;
+	background: #e7901f;
+}
+
+.plansza {
+	width: 1200px;
+	height: 640px;
+	margin: auto;
+	display: flex;
+	flex-wrap: wrap;
+	perspective: 1000px;
+}
+
+.karta {
+	width: calc(20% - 10px);
+	height: calc(50% - 10px);
+	margin: 5px;
+	position: relative;
+	transform: scale(1);
+	transform-style: preserve-3d;
+	transition: transform 0.5s;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.karta:active {
+	transform: scale(0.97);
+	transition: transform 0.2s;
+}
+
+.karta.flip {
+	transform: rotateY(180deg);
+}
+
+.obrazek,
+.rewers {
+	width: 100%;
+	height: 100%;
+	padding: 20px;
+	position: absolute;
+	border-radius: 5px;
+	background: rgb(255, 255, 255);
+	backface-visibility: hidden;
+}
+
+.obrazek {
+	transform: rotateY(180deg);
+}
