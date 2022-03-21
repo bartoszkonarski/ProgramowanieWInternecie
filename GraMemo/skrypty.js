@@ -1,5 +1,5 @@
 const allKarty = document.querySelectorAll('.karta');
-
+const startPrzycisk = document.querySelectorAll('.button')[0];
 let hasFlippedCard = false;
 let lockBoard = false;
 let firstCard, secondCard;
@@ -55,11 +55,24 @@ function resetBoard() {
   [firstCard, secondCard] = [null, null];
 }
 
-(function shuffle() {
+function startGry() {
   allKarty.forEach(card => {
-    let randomPos = Math.floor(Math.random() * 10);
-    card.style.order = randomPos;
+    card.style.opacity=0;
   });
-})();
+    allKarty.forEach(card => {
+      card.addEventListener('click', flipCard);
+      card.classList.remove('flip'); 
+      setTimeout(() => {
+      let randomPos = Math.floor(Math.random() * 10);
+      card.style.order = randomPos;
+      },350);
+  });
+  setTimeout(() => {
+      allKarty.forEach(card => {
+      card.style.opacity=1;
+    });
+      },350);
+  
+}
 
-allKarty.forEach(card => card.addEventListener('click', flipCard));
+startPrzycisk.addEventListener('click',startGry);

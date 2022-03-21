@@ -26,21 +26,24 @@ body {
 	position: relative;
 	transform: scale(1);
 	transform-style: preserve-3d;
-	transition: transform 0.5s;
+	transition: transform 0.3s;
 	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	opacity: 0;
 }
 
 .karta:active {
 	transform: scale(0.97);
-	transition: transform 0.2s;
+	transition: transform 0.3s;
 }
 
 .karta.flip {
 	transform: rotateY(180deg);
+	transition: transform 0.3s;
 }
 
 .obrazek,
-.rewers {
+.rewers,
+.rewersInactive {
 	width: 100%;
 	height: 100%;
 	padding: 20px;
@@ -52,4 +55,16 @@ body {
 
 .obrazek {
 	transform: rotateY(180deg);
+	transition: transform 0.1s;
+}
+.button {
+	background-color: #af4c4c;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
 }
