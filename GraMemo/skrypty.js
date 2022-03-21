@@ -1,58 +1,61 @@
 const allKarty = document.querySelectorAll('.karta');
 const startPrzycisk = document.querySelectorAll('.button')[0];
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
+let czyDruga = false;
+let wTrakcie = false;
+let kartaA, kartaB;
 
-function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
+function nietrafionyWybor() {
+  wTrakcie = true;
+
+  setTimeout(() => {
+    kartaA.classList.remove('flip');
+    kartaB.classList.remove('flip');
+
+    nowyRuch();
+  }, 1500);
+}
+function wyborKarty() {
+  if (wTrakcie) return;
+  if (this === kartaA) return;
 
   this.classList.add('flip');
 
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
+  if (!czyDruga) {
+    czyDruga = true;
+    kartaA = this;
 
     return;
   }
-  secondCard = this;
+  kartaB = this;
 
-  checkForMatch();
+  porownanie();
 }
 
-function checkForMatch() {
-    if (firstCard.dataset.klub === secondCard.dataset.klub)
+function porownanie() {
+    if (kartaA.dataset.klub === kartaB.dataset.klub)
         znalezionaPara();
     else
-        unflipCards();
+        nietrafionyWybor();
 }
 
 function znalezionaPara() {
-    firstCard.removeEventListener('click', flipCard);
-    secondCard.removeEventListener('click', flipCard);
+    kartaA.removeEventListener('click', wyborKarty);
+    kartaB.removeEventListener('click', wyborKarty);
     setTimeout(() => {
-    firstCard.style.opacity=0;
-    secondCard.style.opacity=0;
+    kartaA.style.opacity=0;
+    kartaB.style.opacity=0;
 
-    resetBoard();
+    nowyRuch();
   }, 800);
 }
 
-function unflipCards() {
-  lockBoard = true;
 
-  setTimeout(() => {
-    firstCard.classList.remove('flip');
-    secondCard.classList.remove('flip');
 
-    resetBoard();
-  }, 1500);
-}
-
-function resetBoard() {
-  [hasFlippedCard, lockBoard] = [false, false];
-  [firstCard, secondCard] = [null, null];
+function nowyRuch() {
+  czyDruga = false;
+  wTrakcie = false;
+  kartaA = null
+  kartaB = null
 }
 
 function startGry() {
@@ -60,7 +63,7 @@ function startGry() {
     card.style.opacity=0;
   });
     allKarty.forEach(card => {
-      card.addEventListener('click', flipCard);
+      card.addEventListener('click', wyborKarty);
       card.classList.remove('flip'); 
       setTimeout(() => {
       let randomPos = Math.floor(Math.random() * 10);
@@ -76,4 +79,4 @@ function startGry() {
   
 }
 
-startPrzycisk.addEventListener('click',startGry);
+startPrzycisk.addEventListener('click', startGry);
