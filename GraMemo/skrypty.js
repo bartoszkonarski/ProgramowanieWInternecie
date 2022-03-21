@@ -70,6 +70,7 @@ function startGry() {
   setTimeout(() => {
       allKarty.forEach(card => {
       card.style.opacity=1;
+      document.getElementById("RestartButton").value = "Restart";
     });
       },350);
   
