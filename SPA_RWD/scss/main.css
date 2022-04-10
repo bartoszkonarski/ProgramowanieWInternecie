@@ -484,6 +484,9 @@ main .trailer .container {
 main .trailer .container h2 {
   color: #fff;
 }
+#trailerframe {
+  width:100%;
+}
 @media (max-width: 1920px) {
   #trailerframe {
     height: 85vh;
