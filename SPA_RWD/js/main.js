@@ -14,4 +14,13 @@ window.onload = function () {
 		menu_btn.classList.toggle('is-active');
 		mobile_menu.classList.toggle('is-active');
 	});
+
+	const mobile_menu_btns = document.querySelectorAll('.mobile-nav-btn');
+
+	 for (let i = 0; i < mobile_menu_btns.length; i++) {
+     	mobile_menu_btns[i].addEventListener("click", function() {
+			menu_btn.classList.toggle('is-active');
+			mobile_menu.classList.toggle('is-active');
+     });
+ }
 }
